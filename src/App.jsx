@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
-import { brand, Button, Card, CardContent, SectionLabel, StatusPill } from "./components/ui.jsx";
+import { brand, Button, Card, CardContent, SectionLabel, StatusPill, InfoCard } from "./components/ui.jsx";
 import {
   CalendarDays,
   FileText,
@@ -95,24 +95,28 @@ const accesosRapidos = [
     title: "Actas y decisiones",
     text: "Consulta actas aprobadas, constancias, salvamentos de voto y fe de erratas.",
     tag: "Transparencia",
+    href: "#transparencia",
   },
   {
     icon: ClipboardList,
     title: "Compromisos",
     text: "Matriz de seguimiento a entidades, responsables, fechas, respuestas y estado.",
     tag: "Control",
+    href: "#compromisos",
   },
   {
     icon: Megaphone,
     title: "Participa",
     text: "Envía problemáticas, propuestas, alertas territoriales o solicitudes de acompañamiento.",
     tag: "Ciudadanía",
+    href: "#contacto",
   },
   {
     icon: Users,
     title: "Consejeros/as",
     text: "Directorio por localidad, comisión, delegación, mesa directiva y periodo.",
     tag: "Representación",
+    href: "#territorio",
   },
 ];
 
@@ -129,30 +133,33 @@ const comisiones = [
   {
     icon: Eye,
     title: "Control y Veeduría",
+    slug: "control-y-veeduria",
     color: brand.blue,
     text: "Seguimiento al cumplimiento de planes, decisiones, compromisos, políticas públicas y programas dirigidos a juventudes.",
   },
   {
     icon: Radio,
     title: "Comunicación y Asuntos Públicos",
+    slug: "comunicacion-y-asuntos-publicos",
     color: brand.coral,
     text: "Comunicación interna y externa, difusión de iniciativas, imagen institucional y relacionamiento con medios, organizaciones sociales y entidades afines.",
   },
   {
     icon: PenLine,
     title: "Planeación y Formulación",
+    slug: "planeacion-y-formulacion",
     color: brand.turquoise,
     text: "Diseño, estudio y sustento técnico de proyectos, planes, propuestas de acuerdo, rutas de incidencia e iniciativas del Consejo.",
   },
 ];
 
 const archivo = [
-  { title: "Reglamento interno", estado: "Vigente", meta: "Acuerdos, reformas y versiones públicas." },
-  { title: "Actas de Plenaria", estado: "Publicar", meta: "Aprobadas dentro de los tiempos reglamentarios." },
-  { title: "Actas de Comisiones", estado: "Trazabilidad", meta: "Permanentes y accidentales." },
-  { title: "Correspondencia", estado: "Radicación", meta: "Oficios enviados, recibidos y respuesta." },
-  { title: "PQRSD juvenil", estado: "Canal", meta: "Peticiones, quejas, reclamos, sugerencias y denuncias." },
-  { title: "Informes semestrales", estado: "Rendición", meta: "Gestión, avances, pendientes y compromisos." },
+  { title: "Reglamento interno", estado: "Vigente", meta: "Acuerdos, reformas y versiones públicas.", href: "#marco-juridico" },
+  { title: "Actas de Plenaria", estado: "Publicar", meta: "Aprobadas dentro de los tiempos reglamentarios.", href: "mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Solicitud%20de%20actas%20de%20Plenaria" },
+  { title: "Actas de Comisiones", estado: "Trazabilidad", meta: "Permanentes y accidentales.", href: "mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Solicitud%20de%20actas%20de%20Comisiones" },
+  { title: "Correspondencia", estado: "Radicación", meta: "Oficios enviados, recibidos y respuesta.", href: "mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Consulta%20sobre%20correspondencia%20del%20CDJ" },
+  { title: "PQRSD juvenil", estado: "Canal", meta: "Peticiones, quejas, reclamos, sugerencias y denuncias.", href: "#contacto" },
+  { title: "Informes semestrales", estado: "Rendición", meta: "Gestión, avances, pendientes y compromisos.", href: "mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Solicitud%20de%20informes%20semestrales%20del%20CDJ" },
 ];
 
 const ruta = [
@@ -301,22 +308,6 @@ const compromisos = [
   { entidad: "Comisión CDJ", asunto: "Informe o producto", estado: "En elaboración", plazo: "Por definir" },
 ];
 
-function InfoCard({ icon: Icon, title, text, tag }) {
-  return (
-    <Card className="transition hover:-translate-y-1 hover:shadow-xl">
-      <CardContent className="p-6">
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl" style={{ background: brand.light }}>
-            <Icon className="h-6 w-6" style={{ color: brand.blue }} />
-          </div>
-          {tag && <StatusPill tone="yellow">{tag}</StatusPill>}
-        </div>
-        <h3 className="text-xl font-black">{title}</h3>
-        <p className="mt-3 text-sm leading-6 text-slate-600">{text}</p>
-      </CardContent>
-    </Card>
-  );
-}
 
 
 export default function App() {
@@ -356,12 +347,18 @@ export default function App() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button className="px-6 py-4 text-base">
-                Enviar propuesta <Send className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" className="px-6 py-4 text-base" style={{ borderColor: brand.black, color: brand.black }}>
-                Ver actas y documentos
-              </Button>
+              <a
+                href="mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Propuesta%20ciudadana%20para%20el%20Consejo%20Distrital%20de%20Juventud&body=Nombre:%0D%0ALocalidad:%0D%0AOrganización%20o%20proceso:%0D%0AAsunto:%0D%0ADescripción%20de%20la%20propuesta:%0D%0ASoportes%20o%20enlaces:%0D%0A"
+              >
+                <Button className="px-6 py-4 text-base">
+                  Enviar propuesta <Send className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
+              <a href="#transparencia">
+                <Button variant="outline" className="px-6 py-4 text-base" style={{ borderColor: brand.black, color: brand.black }}>
+                  Ver actas y documentos
+                </Button>
+              </a>
             </div>
           </motion.div>
 
@@ -408,19 +405,21 @@ export default function App() {
 
       <section className="mx-auto max-w-7xl px-5 py-16">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {accesosRapidos.map(({ icon: Icon, title, text, tag }) => (
-            <Card key={title} className="transition hover:-translate-y-1 hover:shadow-xl">
-              <CardContent className="p-6">
-                <div className="mb-5 flex items-center justify-between">
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl" style={{ background: brand.light }}>
-                    <Icon className="h-6 w-6" style={{ color: brand.blue }} />
+          {accesosRapidos.map(({ icon: Icon, title, text, tag, href }) => (
+            <a key={title} href={href} className="block">
+              <Card className="h-full transition hover:-translate-y-1 hover:shadow-xl">
+                <CardContent className="p-6">
+                  <div className="mb-5 flex items-center justify-between">
+                    <div className="grid h-12 w-12 place-items-center rounded-2xl" style={{ background: brand.light }}>
+                      <Icon className="h-6 w-6" style={{ color: brand.blue }} />
+                    </div>
+                    <StatusPill tone="yellow">{tag}</StatusPill>
                   </div>
-                  <StatusPill tone="yellow">{tag}</StatusPill>
-                </div>
-                <h3 className="text-xl font-black">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{text}</p>
-              </CardContent>
-            </Card>
+                  <h3 className="text-xl font-black">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{text}</p>
+                </CardContent>
+              </Card>
+            </a>
           ))}
         </div>
       </section>
@@ -501,7 +500,7 @@ export default function App() {
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {comisiones.map(({ icon: Icon, title, text, color }) => (
+            {comisiones.map(({ icon: Icon, title, text, color, slug }) => (
               <Card key={title} className="rounded-[2rem] border-0 bg-white shadow-lg">
                 <CardContent className="p-7">
                   <div className="mb-6 grid h-14 w-14 place-items-center rounded-3xl" style={{ background: color }}>
@@ -509,9 +508,13 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-black">{title}</h3>
                   <p className="mt-4 leading-7 text-slate-600">{text}</p>
-                  <Button variant="outline" className="mt-6" style={{ borderColor: brand.blue, color: brand.blue }}>
-                    Ver comisión <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <a
+                    href={`mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Consulta%20sobre%20la%20comisi%C3%B3n%20${encodeURIComponent(title)}&body=Comisi%C3%B3n:%20${encodeURIComponent(title)}%0D%0AAsunto:%0D%0ADescripci%C3%B3n:%0D%0A`}
+                  >
+                    <Button variant="outline" className="mt-6" style={{ borderColor: brand.blue, color: brand.blue }}>
+                      Ver comisión <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </a>
                 </CardContent>
               </Card>
             ))}
@@ -543,16 +546,18 @@ export default function App() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {archivo.map((item) => (
-              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <Archive className="h-6 w-6" style={{ color: brand.blue }} />
-                  <StatusPill tone={item.estado === "Vigente" ? "blue" : item.estado === "Canal" ? "coral" : "yellow"}>
-                    {item.estado}
-                  </StatusPill>
+              <a key={item.title} href={item.href} className="block">
+                <div className="h-full rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <Archive className="h-6 w-6" style={{ color: brand.blue }} />
+                    <StatusPill tone={item.estado === "Vigente" ? "blue" : item.estado === "Canal" ? "coral" : "yellow"}>
+                      {item.estado}
+                    </StatusPill>
+                  </div>
+                  <h3 className="font-black">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.meta}</p>
                 </div>
-                <h3 className="font-black">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{item.meta}</p>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -787,7 +792,11 @@ export default function App() {
 
         <div className="mt-9 grid gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
           {localidades.map((loc, i) => (
-            <a key={loc} href="#" className="group rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <a
+              key={loc}
+              href={`mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Consulta%20territorial%20-%20${encodeURIComponent(loc)}&body=Localidad:%20${encodeURIComponent(loc)}%0D%0ANombre:%0D%0AOrganizaci%C3%B3n%20o%20proceso:%0D%0AAsunto:%0D%0ADescripci%C3%B3n:%0D%0A`}
+              className="group rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
               <div
                 className="mb-3 h-2 rounded-full"
                 style={{
@@ -843,8 +852,8 @@ export default function App() {
               <Mail className="mb-5 h-9 w-9" style={{ color: brand.blue }} />
               <h2 className="text-3xl font-black">Canales de contacto</h2>
               <p className="mt-4 leading-7 text-slate-600">
-                Estos canales permiten orientar solicitudes ciudadanas, participación juvenil y comunicaciones institucionales.
-                El CDJ podrá actualizar esta sección cuando defina nuevos correos, formularios o canales propios.
+                Estos canales permiten orientar solicitudes ciudadanas, participación juvenil, comunicaciones institucionales,
+                solicitudes de información, propuestas territoriales y seguimiento a compromisos públicos.
               </p>
               <div className="mt-6 space-y-3">
                 <div className="rounded-2xl bg-slate-50 p-4">
@@ -857,7 +866,7 @@ export default function App() {
                   <b>Atención IDPAC:</b> atencionalaciudadania@participacionbogota.gov.co
                 </div>
                 <div className="rounded-2xl bg-slate-50 p-4">
-                  <b>Canal propio del CDJ:</b> en proceso de consolidación institucional.
+                  <b>Correo institucional del CDJ:</b> ConsejoDistritaldeJuventud@gobiernobogota.gov.co
                 </div>
               </div>
             </CardContent>

@@ -14,7 +14,7 @@ export default function Footer() {
 
         <div className="grid gap-4 sm:grid-cols-3">
           {[
-            ["Navegación", "Inicio · Consejo · Comisiones · Localidades"],
+            ["Navegación", "Inicio · Consejo · Marco jurídico · Localidades"],
             ["Transparencia", "Actas · Oficios · Informes · PQRSD"],
             ["Redes", "Instagram · X · Facebook · YouTube"],
           ].map(([title, text]) => (

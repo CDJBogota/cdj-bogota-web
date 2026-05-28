@@ -69,3 +69,20 @@ export function StatusPill({ children, tone = "blue" }) {
     </span>
   );
 }
+
+export function InfoCard({ icon: Icon, title, text, tag }) {
+  return (
+    <Card className="transition hover:-translate-y-1 hover:shadow-xl">
+      <CardContent className="p-6">
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl" style={{ background: brand.light }}>
+            <Icon className="h-6 w-6" style={{ color: brand.blue }} />
+          </div>
+          {tag && <StatusPill tone="yellow">{tag}</StatusPill>}
+        </div>
+        <h3 className="text-xl font-black">{title}</h3>
+        <p className="mt-3 text-sm leading-6 text-slate-600">{text}</p>
+      </CardContent>
+    </Card>
+  );
+}
