@@ -2,7 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+import FloatingPqrs from "./components/FloatingPqrs.jsx";
+import SocialLinks from "./components/SocialLinks.jsx";
 import { brand, Button, Card, CardContent, SectionLabel, StatusPill, InfoCard } from "./components/ui.jsx";
+import { externalNormativaLinks, mailtoLinks } from "./data/links.js";
 import {
   CalendarDays,
   FileText,
@@ -203,18 +206,21 @@ const marcoJuridico = [
     title: "Constitución Política",
     tag: "Participación",
     text: "Artículos 2, 40, 103 y 270: participación ciudadana, control del poder político y vigilancia de la gestión pública.",
+    href: externalNormativaLinks.constitucion,
   },
   {
     icon: ScrollText,
     title: "Ley 1622 de 2013",
     tag: "Estatuto Juvenil",
     text: "Marco general de la ciudadanía juvenil, derechos, deberes, sistema de juventudes y mecanismos de participación.",
+    href: externalNormativaLinks.ley1622,
   },
   {
     icon: ScrollText,
     title: "Ley 1885 de 2018",
     tag: "Reforma",
     text: "Modifica el Estatuto de Ciudadanía Juvenil y fortalece reglas sobre Consejos de Juventud y Sistema Nacional de Juventudes.",
+    href: externalNormativaLinks.ley1885,
   },
   {
     icon: FileText,
@@ -227,12 +233,14 @@ const marcoJuridico = [
     title: "Ley 1712 de 2014",
     tag: "Transparencia",
     text: "Acceso a información pública, publicidad activa, reservas legales y obligación de facilitar consulta ciudadana.",
+    href: externalNormativaLinks.ley1712,
   },
   {
     icon: ShieldCheck,
     title: "Ley 1581 de 2012",
     tag: "Datos personales",
     text: "Protección de datos personales, tratamiento responsable de información sensible y elaboración de versiones públicas.",
+    href: externalNormativaLinks.ley1581,
   },
 ];
 
@@ -348,7 +356,7 @@ export default function App() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Propuesta%20ciudadana%20para%20el%20Consejo%20Distrital%20de%20Juventud&body=Nombre:%0D%0ALocalidad:%0D%0AOrganización%20o%20proceso:%0D%0AAsunto:%0D%0ADescripción%20de%20la%20propuesta:%0D%0ASoportes%20o%20enlaces:%0D%0A"
+                href={mailtoLinks.propuesta}
               >
                 <Button className="px-6 py-4 text-base">
                   Enviar propuesta <Send className="ml-2 h-4 w-4" />
@@ -609,7 +617,15 @@ export default function App() {
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {marcoJuridico.map((item) => (
-            <InfoCard key={item.title} {...item} />
+            <a
+              key={item.title}
+              href={item.href || "#marco-juridico"}
+              target={item.href?.startsWith("http") ? "_blank" : undefined}
+              rel={item.href?.startsWith("http") ? "noreferrer" : undefined}
+              className="block"
+            >
+              <InfoCard {...item} />
+            </a>
           ))}
         </div>
       </section>
@@ -869,6 +885,11 @@ export default function App() {
                   <b>Correo institucional del CDJ:</b> ConsejoDistritaldeJuventud@gobiernobogota.gov.co
                 </div>
               </div>
+
+              <div className="mt-6">
+                <p className="mb-3 font-black">Redes oficiales</p>
+                <SocialLinks />
+              </div>
             </CardContent>
           </Card>
 
@@ -897,6 +918,7 @@ export default function App() {
         </div>
       </section>
 
+      <FloatingPqrs />
       <Footer />
     </main>
   );

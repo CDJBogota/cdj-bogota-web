@@ -1,5 +1,6 @@
 import React from "react";
 import LogoCDJ from "./LogoCDJ.jsx";
+import SocialLinks from "./SocialLinks.jsx";
 
 export default function Footer() {
   return (
@@ -12,17 +13,27 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-3">
-          {[
-            ["Navegación", "Inicio · Consejo · Marco jurídico · Localidades"],
-            ["Transparencia", "Actas · Oficios · Informes · PQRSD"],
-            ["Redes", "Instagram · X · Facebook · YouTube"],
-          ].map(([title, text]) => (
-            <div key={title}>
-              <p className="font-black">{title}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
+        <div className="grid gap-6 md:grid-cols-3">
+          <div>
+            <p className="font-black">Navegación</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Inicio · Consejo · Marco jurídico · Localidades
+            </p>
+          </div>
+
+          <div>
+            <p className="font-black">Transparencia</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Actas · Oficios · Informes · PQRSD
+            </p>
+          </div>
+
+          <div>
+            <p className="font-black">Redes oficiales</p>
+            <div className="mt-3">
+              <SocialLinks compact />
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </footer>
