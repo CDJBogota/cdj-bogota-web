@@ -1,8 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
-import { brand, Button, Card, CardContent, SectionLabel, StatusPill } from "./components/ui.jsx";
 import {
   CalendarDays,
   FileText,
@@ -42,6 +39,45 @@ import {
   BadgeCheck,
 } from "lucide-react";
 
+const brand = {
+  yellow: "#FBD416",
+  coral: "#EE4C5B",
+  turquoise: "#57C5CE",
+  blue: "#3871B7",
+  orange: "#F8A72C",
+  pink: "#E5579D",
+  black: "#2B2B2B",
+  gray: "#545454",
+  light: "#E7E3DF",
+  white: "#FFFFFF",
+};
+
+function Button({ children, variant = "solid", className = "", style = {}, ...props }) {
+  const base =
+    "inline-flex items-center justify-center rounded-2xl px-5 py-3 font-black transition active:scale-[0.98]";
+  const variants = {
+    solid: "text-white hover:opacity-90",
+    outline: "border-2 bg-white hover:bg-slate-50",
+  };
+
+  return (
+    <button
+      className={`${base} ${variants[variant]} ${className}`}
+      style={variant === "solid" ? { background: brand.blue, ...style } : style}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+function Card({ children, className = "" }) {
+  return <div className={`rounded-3xl border border-slate-200 bg-white shadow-sm ${className}`}>{children}</div>;
+}
+
+function CardContent({ children, className = "" }) {
+  return <div className={className}>{children}</div>;
+}
 
 const localidades = [
   "Usaquén",
@@ -318,11 +354,63 @@ function InfoCard({ icon: Icon, title, text, tag }) {
   );
 }
 
+function LogoCDJ() {
+  return (
+    <a href="#inicio" className="flex items-center gap-3">
+      <img
+        src="/brand/logo-horizontal.png"
+        alt="Consejo Distrital de Juventud de Bogotá D.C."
+        className="h-24 w-auto object-contain"
+      />
+    </a>
+  );
+}
+
+function SectionLabel({ children }) {
+  return (
+    <p className="text-xs font-black uppercase tracking-[0.28em]" style={{ color: brand.blue }}>
+      {children}
+    </p>
+  );
+}
+
+function StatusPill({ children, tone = "blue" }) {
+  const map = {
+    blue: brand.blue,
+    coral: brand.coral,
+    yellow: brand.yellow,
+    turquoise: brand.turquoise,
+    black: brand.black,
+  };
+  const bg = map[tone] || brand.blue;
+  const text = tone === "yellow" || tone === "turquoise" ? brand.black : brand.white;
+
+  return (
+    <span className="rounded-full px-3 py-1 text-xs font-black" style={{ background: bg, color: text }}>
+      {children}
+    </span>
+  );
+}
 
 export default function App() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]" style={{ fontFamily: "Inter, Arial, sans-serif" }}>
-      <Header />
+      <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
+          <LogoCDJ />
+          <div className="hidden items-center gap-5 text-sm font-bold text-slate-700 xl:flex">
+            <a href="#inicio" className="hover:text-[#3871B7]">Inicio</a>
+            <a href="#consejo" className="hover:text-[#3871B7]">Consejo</a>
+            <a href="#marco-juridico" className="hover:text-[#3871B7]">Marco jurídico</a>
+            <a href="#sistema" className="hover:text-[#3871B7]">Sistema</a>
+            <a href="#incidencia" className="hover:text-[#3871B7]">Incidencia</a>
+            <a href="#biblioteca" className="hover:text-[#3871B7]">Biblioteca</a>
+            <a href="#territorio" className="hover:text-[#3871B7]">Localidades</a>
+            <a href="#contacto" className="hover:text-[#3871B7]">Contacto</a>
+          </div>
+          <a href="#contacto"><Button>Participa</Button></a>
+        </nav>
+      </header>
 
       <section id="inicio" className="relative overflow-hidden">
         <div
@@ -888,7 +976,29 @@ export default function App() {
         </div>
       </section>
 
-      <Footer />
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 md:grid-cols-[1fr_1.2fr]">
+          <div>
+            <LogoCDJ />
+            <p className="mt-4 max-w-md text-sm leading-6 text-slate-600">
+              Portal de participación, transparencia y seguimiento ciudadano del Consejo Distrital de Juventud de Bogotá D.C.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              ["Navegación", "Inicio · Consejo · Comisiones · Localidades"],
+              ["Transparencia", "Actas · Oficios · Informes · PQRSD"],
+              ["Redes", "Instagram · X · Facebook · YouTube"],
+            ].map(([title, text]) => (
+              <div key={title}>
+                <p className="font-black">{title}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
