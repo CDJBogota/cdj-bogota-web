@@ -5,7 +5,7 @@ import Footer from "./components/Footer.jsx";
 import FloatingPqrs from "./components/FloatingPqrs.jsx";
 import SocialLinks from "./components/SocialLinks.jsx";
 import { brand, Button, Card, CardContent, SectionLabel, StatusPill, InfoCard } from "./components/ui.jsx";
-import { externalNormativaLinks, mailtoLinks } from "./data/links.js";
+import { externalNormativaLinks, mailtoLinks, localidadMailto } from "./data/links.js";
 import {
   CalendarDays,
   FileText,
@@ -810,7 +810,7 @@ export default function App() {
           {localidades.map((loc, i) => (
             <a
               key={loc}
-              href={`mailto:ConsejoDistritaldeJuventud@gobiernobogota.gov.co?subject=Consulta%20territorial%20-%20${encodeURIComponent(loc)}&body=Localidad:%20${encodeURIComponent(loc)}%0D%0ANombre:%0D%0AOrganizaci%C3%B3n%20o%20proceso:%0D%0AAsunto:%0D%0ADescripci%C3%B3n:%0D%0A`}
+              href={localidadMailto(loc)}
               className="group rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div
@@ -820,7 +820,7 @@ export default function App() {
                 }}
               />
               <p className="font-black">{loc}</p>
-              <p className="mt-1 text-xs text-slate-500">Ver perfil territorial</p>
+              <p className="mt-1 text-xs text-slate-500">Contactar CLJ local</p>
             </a>
           ))}
         </div>
@@ -883,6 +883,9 @@ export default function App() {
                 </div>
                 <div className="rounded-2xl bg-slate-50 p-4">
                   <b>Correo institucional del CDJ:</b> ConsejoDistritaldeJuventud@gobiernobogota.gov.co
+                </div>
+                <div className="rounded-2xl bg-slate-50 p-4">
+                  <b>Equipo de Juventud - Secretaría Distrital de Gobierno:</b> juventud@gobiernobogota.gov.co
                 </div>
               </div>
 
