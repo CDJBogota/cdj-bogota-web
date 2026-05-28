@@ -213,24 +213,13 @@ const agenda = [
 
 function LogoCDJ() {
   return (
-    <div className="flex items-center gap-3">
-      <div className="relative h-12 w-14">
-        <div className="absolute left-0 top-5 h-6 w-6 rounded-full" style={{ background: brand.coral }} />
-        <div className="absolute left-5 top-5 h-6 w-6 rounded-full" style={{ background: brand.turquoise }} />
-        <div className="absolute left-10 top-5 h-6 w-4 rounded-r-full" style={{ background: brand.yellow }} />
-        <div className="absolute left-5 top-0 h-4 w-4 rounded-full" style={{ background: brand.yellow }} />
-        <div className="absolute left-7 top-[-6px] h-2 w-2 rounded-full" style={{ background: brand.yellow }} />
-      </div>
-      <div className="leading-tight">
-        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-500">Consejo Distrital de</p>
-        <p className="text-xl font-black tracking-tight" style={{ color: brand.black }}>
-          Juventudes
-        </p>
-        <p className="text-xs font-bold" style={{ color: brand.blue }}>
-          Bogotá D.C.
-        </p>
-      </div>
-    </div>
+    <a href="#inicio" className="flex items-center gap-3">
+      <img
+        src="/brand/logo-horizontal.png"
+        alt="Consejo Distrital de Juventud de Bogotá D.C."
+        className="h-24 w-auto object-contain"
+      />
+    </a>
   );
 }
 
@@ -264,7 +253,7 @@ export default function App() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]" style={{ fontFamily: "Inter, Arial, sans-serif" }}>
       <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
           <LogoCDJ />
           <div className="hidden items-center gap-6 text-sm font-bold text-slate-700 lg:flex">
             <a href="#inicio" className="hover:text-[#3871B7]">Inicio</a>
@@ -284,6 +273,12 @@ export default function App() {
           style={{
             background: `radial-gradient(circle at 8% 15%, ${brand.yellow}55, transparent 26%), radial-gradient(circle at 92% 12%, ${brand.coral}44, transparent 28%), radial-gradient(circle at 55% 90%, ${brand.turquoise}44, transparent 32%), linear-gradient(135deg, #ffffff, #f8fafc)`,
           }}
+        />
+        <img
+        src="/brand/isotipo-cdj.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[-80px] top-20 hidden w-[420px] opacity-10 lg:block"
         />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.08fr_.92fr] lg:items-center lg:py-24">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
@@ -606,8 +601,8 @@ export default function App() {
               <Mail className="mb-5 h-9 w-9" style={{ color: brand.blue }} />
               <h2 className="text-3xl font-black">Canales de contacto</h2>
               <p className="mt-4 leading-7 text-slate-600">
-                Se deben confirmar los correos propios del CDJ antes de publicar. Mientras tanto, el diseño deja visibles
-                canales oficiales de atención institucional y redes públicas verificables.
+                Estos canales permiten orientar solicitudes ciudadanas, participación juvenil y comunicaciones institucionales.
+                El CDJ podrá actualizar esta sección cuando defina nuevos correos, formularios o canales propios.
               </p>
               <div className="mt-6 space-y-3">
                 <div className="rounded-2xl bg-slate-50 p-4">
@@ -620,7 +615,7 @@ export default function App() {
                   <b>Atención IDPAC:</b> atencionalaciudadania@participacionbogota.gov.co
                 </div>
                 <div className="rounded-2xl bg-slate-50 p-4">
-                  <b>Correo propio CDJ:</b> pendiente de confirmación oficial
+                  <b>Canal propio del CDJ:</b> en proceso de consolidación institucional.
                 </div>
               </div>
             </CardContent>
