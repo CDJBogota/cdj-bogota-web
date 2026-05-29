@@ -43,6 +43,7 @@ export const socialLinks = [
 ];
 
 export const externalNormativaLinks = {
+  constitucion1991: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125",
   ley1622: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=52971",
   ley1885: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=85540",
   ley1755: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=65334",
@@ -50,6 +51,13 @@ export const externalNormativaLinks = {
   ley1581: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981",
   sentenciaC4842017: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=84681",
   directiva08_2021: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=174866",
+
+  // Normativa distrital. Cuando no esté en Función Pública, se usa Régimen Legal de Bogotá / SISJUR.
+  decreto499_2011: "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=44609",
+  decreto058_2022: "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=120599",
+  decreto614_2022: "https://sisjur.bogotajuridica.gov.co/sisjur/normas/Norma1.jsp?dt=S&i=132538",
+  decreto628_2025: "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?dt=S&i=191967",
+  conpesJuventudBogota: "https://www.sdp.gov.co/sites/default/files/CONPES%2008.pdf",
 };
 
 export const cljEmails = {
