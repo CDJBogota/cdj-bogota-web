@@ -67,8 +67,8 @@ export default function InstitucionalPage() {
           </h1>
           <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-700">
             El CDJ Bogotá es una instancia autónoma de participación, concertación, vigilancia, control social e interlocución
-            de las juventudes del Distrito Capital. Hace parte del Subsistema de Participación de las Juventudes dentro del
-            Sistema Distrital de Juventud.
+            de las juventudes del Distrito Capital. Su estructura interna se organiza para deliberar, decidir, documentar,
+            comunicar, representar y hacer seguimiento público.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={oneDriveLinks.reglamentoInterno} target="_blank" rel="noreferrer">
@@ -77,6 +77,11 @@ export default function InstitucionalPage() {
             <a href={oneDriveLinks.archivoGeneral} target="_blank" rel="noreferrer">
               <Button variant="outline" style={{ borderColor: brand.black, color: brand.black }}>
                 Archivo oficial OneDrive
+              </Button>
+            </a>
+            <a href="/sistema-juventud">
+              <Button variant="outline" style={{ borderColor: brand.blue, color: brand.blue }}>
+                Ver Sistema de Juventud
               </Button>
             </a>
           </div>

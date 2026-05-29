@@ -40,6 +40,13 @@ const accesos = [
     tag: "Marco jurídico",
   },
   {
+    icon: Users,
+    title: "Sistema de Juventud",
+    text: "Del Sistema Nacional de Juventudes al Sistema Distrital, el Subsistema de Participación, el CDJ y los CLJ.",
+    href: "/sistema-juventud",
+    tag: "Sistema",
+  },
+  {
     icon: Archive,
     title: "Transparencia",
     text: "Reglamento interno, archivo oficial, actas, informes, correspondencia y versiones públicas.",
@@ -62,10 +69,10 @@ const accesos = [
   },
   {
     icon: ClipboardList,
-    title: "Compromisos",
-    text: "Ruta de seguimiento a entidades, responsables, plazos, respuestas y soportes.",
-    href: "/transparencia",
-    tag: "Control social",
+    title: "Documentos",
+    text: "Biblioteca documental del CDJ: reglamento, actas, informes, correspondencia y archivo oficial.",
+    href: "/documentos",
+    tag: "Archivo",
   },
 ];
 

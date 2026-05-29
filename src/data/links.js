@@ -52,7 +52,6 @@ export const externalNormativaLinks = {
   sentenciaC4842017: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=84681",
   directiva08_2021: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=174866",
 
-  // Normativa distrital. Cuando no esté en Función Pública, se usa Régimen Legal de Bogotá / SISJUR.
   decreto499_2011: "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=44609",
   decreto058_2022: "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=120599",
   decreto614_2022: "https://sisjur.bogotajuridica.gov.co/sisjur/normas/Norma1.jsp?dt=S&i=132538",
