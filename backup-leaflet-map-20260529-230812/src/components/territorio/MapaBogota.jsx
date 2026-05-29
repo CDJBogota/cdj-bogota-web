@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { localidades, estadoTerritorial } from "../../data/localidades";
-import BogotaLeafletMap from "./BogotaLeafletMap";
+import BogotaSvgMap from "./BogotaSvgMap";
 import LocalidadPanel from "./LocalidadPanel";
 
 export default function MapaBogota() {
@@ -46,7 +46,7 @@ export default function MapaBogota() {
           </div>
         </div>
 
-        <BogotaLeafletMap
+        <BogotaSvgMap
           localidades={localidades}
           selectedId={selected?.id}
           onSelect={setSelected}
