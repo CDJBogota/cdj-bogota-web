@@ -1,9 +1,8 @@
-import React from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import { brand, Card, CardContent, SectionLabel, StatusPill, Button } from "../components/ui.jsx";
-import { Building2, Gavel, Network, Handshake, Eye, Radio, PenLine, ArrowRight, Users, Landmark, ClipboardList, GitBranch } from "lucide-react";
+import { Handshake, Eye, Radio, PenLine, ArrowRight, Users, Landmark, GitBranch } from "lucide-react";
 import { oneDriveLinks, externalNormativaLinks } from "../data/links.js";
 
 const estructuraCDJ = [

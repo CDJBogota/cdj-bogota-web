@@ -1,10 +1,9 @@
-import React from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import FloatingPqrs from "../components/FloatingPqrs.jsx";
-import { Card, CardContent, SectionLabel, StatusPill, Button, brand } from "../components/ui.jsx";
+import { Card, CardContent, SectionLabel, StatusPill, brand } from "../components/ui.jsx";
 import { oneDriveLinks, mailtoLinks } from "../data/links.js";
-import { Archive, FileText, ClipboardList, Mail, ExternalLink, ShieldCheck } from "lucide-react";
+import { Archive, FileText, ClipboardList, ExternalLink, ShieldCheck } from "lucide-react";
 
 const bloques = [
   ["Reglamento interno", "Norma interna de organización y funcionamiento.", oneDriveLinks.reglamentoInterno, "Vigente"],

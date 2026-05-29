@@ -1,4 +1,3 @@
-import React from "react";
 import { ExternalLink } from "lucide-react";
 import { socialLinks } from "../data/links.js";
 import { StatusPill } from "./ui.jsx";

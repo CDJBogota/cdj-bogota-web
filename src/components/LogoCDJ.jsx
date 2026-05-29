@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function LogoCDJ({ size = "h-24" }) {
   return (

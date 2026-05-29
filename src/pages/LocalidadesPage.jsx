@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import FloatingPqrs from "../components/FloatingPqrs.jsx";
@@ -28,7 +27,7 @@ export default function LocalidadesPage() {
 
       <section className="mx-auto max-w-7xl px-5 py-20">
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {localidades.map((loc, i) => (
+          {localidades.map((loc) => (
             <a key={loc} href={localidadMailto(loc)} className="block">
               <Card className="h-full transition hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-5">

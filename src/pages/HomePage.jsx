@@ -1,18 +1,14 @@
-import React from "react";
 import { motion } from "framer-motion";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import SocialLinks from "../components/SocialLinks.jsx";
 import { brand, Button, Card, CardContent, SectionLabel, StatusPill } from "../components/ui.jsx";
-import { oneDriveLinks, mailtoLinks } from "../data/links.js";
+import { oneDriveLinks } from "../data/links.js";
 import {
   Search,
   Send,
-  FileText,
-  Users,
   ClipboardList,
-  Megaphone,
   ArrowRight,
   Building2,
   Scale,

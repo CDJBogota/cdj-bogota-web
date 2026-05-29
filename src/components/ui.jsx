@@ -1,4 +1,3 @@
-import React from "react";
 
 export const brand = {
   yellow: "#FBD416",

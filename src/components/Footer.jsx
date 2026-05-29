@@ -1,4 +1,3 @@
-import React from "react";
 import LogoCDJ from "./LogoCDJ.jsx";
 import SocialLinks from "./SocialLinks.jsx";
 

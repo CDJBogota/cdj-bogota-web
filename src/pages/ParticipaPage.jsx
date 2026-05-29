@@ -1,11 +1,10 @@
-import React from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import SocialLinks from "../components/SocialLinks.jsx";
 import { Card, CardContent, SectionLabel, Button, brand } from "../components/ui.jsx";
 import { mailtoLinks, correoInstitucional, correoEquipoJuventud } from "../data/links.js";
-import { Send, Mail, FileText, Users, MessageCircle } from "lucide-react";
+import { Send, Mail, FileText, Users } from "lucide-react";
 
 const acciones = [
   [Send, "Enviar propuesta", "Presenta una propuesta juvenil, territorial, sectorial o de política pública.", mailtoLinks.propuesta],
