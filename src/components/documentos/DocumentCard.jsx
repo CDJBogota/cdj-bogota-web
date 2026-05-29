@@ -1,4 +1,8 @@
-import { Copy, Download, ExternalLink, FileText } from "lucide-react";
+import { Copy, Download, ExternalLink, FileText, LockKeyhole } from "lucide-react";
+
+function hasRealUrl(value) {
+  return value && value !== "#";
+}
 
 export default function DocumentCard({ doc }) {
   const citation = `${doc.titulo}. ${doc.entidad}, ${doc.fecha}.`;
@@ -32,17 +36,43 @@ export default function DocumentCard({ doc }) {
       </div>
 
       <div className="mt-5 flex flex-wrap gap-2">
-        <a href={doc.enlace || "#"} className="inline-flex items-center rounded-2xl bg-[#3871B7] px-4 py-2 text-sm font-black text-white">
-          Descargar <Download className="ml-2 h-4 w-4" />
-        </a>
-        <a href={doc.soporte || "#"} className="inline-flex items-center rounded-2xl border border-slate-200 px-4 py-2 text-sm font-black text-slate-700">
-          Ver soporte <ExternalLink className="ml-2 h-4 w-4" />
-        </a>
-        {doc.versionPublica && (
-          <a href={doc.enlace || "#"} className="inline-flex items-center rounded-2xl bg-[#FBD416] px-4 py-2 text-sm font-black text-slate-950">
-            Versión pública
+        {hasRealUrl(doc.enlace) ? (
+          <a href={doc.enlace} className="inline-flex items-center rounded-2xl bg-[#3871B7] px-4 py-2 text-sm font-black text-white">
+            Descargar <Download className="ml-2 h-4 w-4" />
+          </a>
+        ) : (
+          <a href="/participa#documento-no-publicado" className="inline-flex items-center rounded-2xl bg-slate-100 px-4 py-2 text-sm font-black text-slate-600">
+            Solicitar documento
           </a>
         )}
+
+        {hasRealUrl(doc.soporte) ? (
+          <a href={doc.soporte} className="inline-flex items-center rounded-2xl border border-slate-200 px-4 py-2 text-sm font-black text-slate-700">
+            Ver soporte <ExternalLink className="ml-2 h-4 w-4" />
+          </a>
+        ) : (
+          <span className="inline-flex items-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-black text-slate-500">
+            Soporte pendiente
+          </span>
+        )}
+
+        {doc.versionPublica ? (
+          hasRealUrl(doc.enlace) ? (
+            <a href={doc.enlace} className="inline-flex items-center rounded-2xl bg-[#FBD416] px-4 py-2 text-sm font-black text-slate-950">
+              Versión pública
+            </a>
+          ) : (
+            <span className="inline-flex items-center rounded-2xl bg-[#FBD416] px-4 py-2 text-sm font-black text-slate-950">
+              Versión pública pendiente
+            </span>
+          )
+        ) : (
+          <span className="inline-flex items-center rounded-2xl border border-slate-200 px-4 py-2 text-sm font-black text-slate-500">
+            <LockKeyhole className="mr-2 h-4 w-4" />
+            No publicable aún
+          </span>
+        )}
+
         <button onClick={copyCitation} className="inline-flex items-center rounded-2xl border border-slate-200 px-4 py-2 text-sm font-black text-slate-700">
           Copiar cita <Copy className="ml-2 h-4 w-4" />
         </button>

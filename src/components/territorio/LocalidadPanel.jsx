@@ -99,7 +99,7 @@ export default function LocalidadPanel({ localidad }) {
         </a>
 
         <a
-          href="/documentos"
+          href={`/documentos?localidad=${encodeURIComponent(localidad.nombre)}`}
           className="inline-flex items-center justify-center rounded-2xl border border-slate-200 px-4 py-3 text-sm font-black text-slate-700"
         >
           Ver documentos

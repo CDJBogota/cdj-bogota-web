@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
-import { Loader2 } from "lucide-react";
+import { Loader2, RotateCcw } from "lucide-react";
 import { estadoTerritorial } from "../../data/localidades";
 
 const BOGOTA_CENTER = [4.6486259, -74.2478932];
@@ -63,9 +63,11 @@ function FitBounds({ geojson }) {
 }
 
 export default function BogotaLeafletMap({ localidades, selectedId, onSelect }) {
+  const mapRef = useRef(null);
   const [geojson, setGeojson] = useState(null);
   const [source, setSource] = useState("oficial");
   const [error, setError] = useState("");
+  const [lectura, setLectura] = useState("contacto");
 
   const metaByName = useMemo(() => {
     return new Map(localidades.map((loc) => [normalizeName(loc.nombre), loc]));
@@ -146,18 +148,50 @@ export default function BogotaLeafletMap({ localidades, selectedId, onSelect }) 
     };
   }, [geojson, orderedFeatures]);
 
-  function styleFeature(feature) {
+  function getFillByReading(feature) {
+    const id = feature.properties?.__cdjId;
+    const localidad = localidades.find((loc) => loc.id === id);
     const estado = feature.properties?.__cdjEstado || "pendiente";
+
+    if (lectura === "compromisos") {
+      const value = localidad?.compromisosActivos || 0;
+      if (value >= 5) return "#EE4C5B";
+      if (value >= 3) return "#F8A72C";
+      if (value >= 1) return "#FBD416";
+      return "#E7E3DF";
+    }
+
+    if (lectura === "propuestas") {
+      const value = localidad?.propuestas || 0;
+      if (value >= 8) return "#E5579D";
+      if (value >= 5) return "#3871B7";
+      if (value >= 2) return "#57C5CE";
+      return "#E7E3DF";
+    }
+
     const meta = estadoTerritorial[estado] || estadoTerritorial.pendiente;
+    return meta.fill;
+  }
+
+  function styleFeature(feature) {
     const isSelected = feature.properties?.__cdjId === selectedId;
 
     return {
-      fillColor: meta.fill,
+      fillColor: getFillByReading(feature),
       color: isSelected ? "#2B2B2B" : "#ffffff",
       weight: isSelected ? 4 : 1.5,
       fillOpacity: isSelected ? 0.88 : 0.68,
       opacity: 1,
     };
+  }
+
+  function resetMapView() {
+    if (!mapRef.current || !enrichedGeojson?.features?.length) return;
+    const layer = window.L?.geoJSON(enrichedGeojson);
+    const bounds = layer?.getBounds?.();
+    if (bounds?.isValid?.()) {
+      mapRef.current.fitBounds(bounds, { padding: [18, 18] });
+    }
   }
 
   function onEachFeature(feature, layer) {
@@ -170,6 +204,13 @@ export default function BogotaLeafletMap({ localidades, selectedId, onSelect }) 
       direction: "top",
       className: "font-bold",
     });
+
+    layer.bindPopup(`
+      <strong>${name}</strong><br/>
+      Delegado/a CDJ: ${metadata?.delegadoCDJ || "Por confirmar"}<br/>
+      Compromisos: ${metadata?.compromisosActivos ?? 0}<br/>
+      Propuestas: ${metadata?.propuestas ?? 0}
+    `);
 
     layer.on({
       click: () => {
@@ -224,7 +265,25 @@ export default function BogotaLeafletMap({ localidades, selectedId, onSelect }) 
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2 text-xs font-black">
+        <div className="flex flex-wrap items-center gap-2 text-xs font-black">
+          <select
+            value={lectura}
+            onChange={(event) => setLectura(event.target.value)}
+            className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-700"
+          >
+            <option value="contacto">Estado de contacto</option>
+            <option value="compromisos">Compromisos activos</option>
+            <option value="propuestas">Propuestas registradas</option>
+          </select>
+
+          <button
+            type="button"
+            onClick={resetMapView}
+            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-700 hover:bg-slate-50"
+          >
+            <RotateCcw className="mr-1 h-3 w-3" />
+            Restablecer vista
+          </button>
           {Object.entries(estadoTerritorial).map(([key, item]) => (
             <span key={key} className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-2 text-slate-700">
               <span className="h-3 w-3 rounded-full" style={{ background: item.fill }} />
@@ -235,7 +294,7 @@ export default function BogotaLeafletMap({ localidades, selectedId, onSelect }) 
       </div>
 
       <div className="h-[680px] overflow-hidden rounded-[1.5rem] bg-slate-100">
-        <MapContainer center={BOGOTA_CENTER} zoom={10} scrollWheelZoom={true}>
+        <MapContainer center={BOGOTA_CENTER} zoom={10} scrollWheelZoom={true} ref={mapRef}>
           <TileLayer
             attribution='&copy; OpenStreetMap contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

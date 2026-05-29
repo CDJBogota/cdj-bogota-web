@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingPqrs from "./components/FloatingPqrs";
+import ScrollToHash from "./components/ScrollToHash";
 
 import HomePage from "./pages/HomePage";
 import InstitucionalPage from "./pages/InstitucionalPage";
@@ -22,6 +23,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
+      <ScrollToHash />
 
       <Routes>
         <Route path="/" element={<HomePage />} />

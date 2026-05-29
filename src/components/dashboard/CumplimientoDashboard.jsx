@@ -1,8 +1,13 @@
-import { useMemo, useState } from "react";
-import { Download, ExternalLink, Filter, Search } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Download, ExternalLink, Filter, RotateCcw, Search } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { compromisos } from "../../data/compromisos";
 import SemaforoEstado from "./SemaforoEstado";
 import IndicadorCard from "./IndicadorCard";
+
+function hasRealUrl(value) {
+  return value && value !== "#";
+}
 
 function exportCsv(rows) {
   const headers = [
@@ -40,24 +45,39 @@ function exportCsv(rows) {
 }
 
 export default function CumplimientoDashboard() {
-  const [query, setQuery] = useState("");
-  const [estado, setEstado] = useState("todos");
-  const [localidad, setLocalidad] = useState("todas");
-  const [entidad, setEntidad] = useState("todas");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [query, setQuery] = useState(searchParams.get("q") || "");
+  const [estado, setEstado] = useState(searchParams.get("estado") || "todos");
+  const [localidad, setLocalidad] = useState(searchParams.get("localidad") || "todas");
+  const [entidad, setEntidad] = useState(searchParams.get("entidad") || "todas");
+  const [prioridad, setPrioridad] = useState(searchParams.get("prioridad") || "todas");
 
   const localidades = [...new Set(compromisos.map((item) => item.localidad))];
   const entidades = [...new Set(compromisos.map((item) => item.entidad))];
+  const prioridades = [...new Set(compromisos.map((item) => item.prioridad))];
+
+  useEffect(() => {
+    const params = {};
+    if (query) params.q = query;
+    if (estado !== "todos") params.estado = estado;
+    if (localidad !== "todas") params.localidad = localidad;
+    if (entidad !== "todas") params.entidad = entidad;
+    if (prioridad !== "todas") params.prioridad = prioridad;
+    setSearchParams(params, { replace: true });
+  }, [query, estado, localidad, entidad, prioridad, setSearchParams]);
 
   const filtrados = useMemo(() => {
     return compromisos.filter((item) => {
-      const texto = `${item.titulo} ${item.entidad} ${item.localidad} ${item.comision} ${item.tipo} ${item.resumen}`.toLowerCase();
+      const texto = `${item.titulo} ${item.entidad} ${item.localidad} ${item.comision} ${item.tipo} ${item.resumen} ${item.prioridad}`.toLowerCase();
       const matchQuery = texto.includes(query.toLowerCase());
       const matchEstado = estado === "todos" || item.estado === estado;
       const matchLocalidad = localidad === "todas" || item.localidad === localidad;
       const matchEntidad = entidad === "todas" || item.entidad === entidad;
-      return matchQuery && matchEstado && matchLocalidad && matchEntidad;
+      const matchPrioridad = prioridad === "todas" || item.prioridad === prioridad;
+      return matchQuery && matchEstado && matchLocalidad && matchEntidad && matchPrioridad;
     });
-  }, [query, estado, localidad, entidad]);
+  }, [query, estado, localidad, entidad, prioridad]);
 
   const stats = {
     total: compromisos.length,
@@ -66,6 +86,14 @@ export default function CumplimientoDashboard() {
     vencidos: compromisos.filter((item) => item.estado === "vencido").length,
     sinRespuesta: compromisos.filter((item) => item.estado === "sin-respuesta").length,
   };
+
+  function clearFilters() {
+    setQuery("");
+    setEstado("todos");
+    setLocalidad("todas");
+    setEntidad("todas");
+    setPrioridad("todas");
+  }
 
   return (
     <section className="space-y-8">
@@ -81,19 +109,28 @@ export default function CumplimientoDashboard() {
         <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="text-2xl font-black text-slate-950">Semáforo de cumplimiento</h2>
-            <p className="text-sm text-slate-600">Filtra por entidad, localidad, estado o palabra clave.</p>
+            <p className="text-sm text-slate-600">Filtra por entidad, localidad, estado, prioridad o palabra clave.</p>
           </div>
-          <button
-            onClick={() => exportCsv(filtrados)}
-            className="inline-flex items-center justify-center rounded-2xl bg-[#3871B7] px-4 py-3 text-sm font-black text-white"
-          >
-            <Download className="mr-2 h-4 w-4" />
-            Exportar CSV
-          </button>
+
+          <div className="flex flex-wrap gap-2">
+            <button onClick={() => setEstado("vencido")} className="rounded-2xl bg-red-100 px-4 py-3 text-sm font-black text-red-800">
+              Ver vencidos
+            </button>
+            <button onClick={() => setEstado("sin-respuesta")} className="rounded-2xl bg-amber-100 px-4 py-3 text-sm font-black text-amber-800">
+              Sin respuesta
+            </button>
+            <button onClick={() => setPrioridad("alta")} className="rounded-2xl bg-purple-100 px-4 py-3 text-sm font-black text-purple-800">
+              Alta prioridad
+            </button>
+            <button onClick={() => exportCsv(filtrados)} className="inline-flex items-center rounded-2xl bg-[#3871B7] px-4 py-3 text-sm font-black text-white">
+              <Download className="mr-2 h-4 w-4" />
+              Exportar CSV
+            </button>
+          </div>
         </div>
 
-        <div className="grid gap-3 lg:grid-cols-4">
-          <label className="relative lg:col-span-1">
+        <div className="grid gap-3 lg:grid-cols-6">
+          <label className="relative lg:col-span-2">
             <Search className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
             <input
               value={query}
@@ -121,32 +158,51 @@ export default function CumplimientoDashboard() {
             <option value="todas">Todas las localidades</option>
             {localidades.map((item) => <option key={item}>{item}</option>)}
           </select>
+
+          <select value={prioridad} onChange={(e) => setPrioridad(e.target.value)} className="rounded-2xl border border-slate-200 px-3 py-3 text-sm">
+            <option value="todas">Todas las prioridades</option>
+            {prioridades.map((item) => <option key={item} value={item}>{item}</option>)}
+          </select>
+        </div>
+
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <p className="text-sm font-bold text-slate-600">{filtrados.length} compromiso(s) encontrado(s)</p>
+          <button onClick={clearFilters} className="inline-flex items-center rounded-2xl border border-slate-200 px-4 py-2 text-sm font-black text-slate-700 hover:bg-slate-50">
+            <RotateCcw className="mr-2 h-4 w-4" />
+            Limpiar filtros
+          </button>
         </div>
 
         <div className="mt-5 overflow-hidden rounded-3xl border border-slate-200">
-          <div className="hidden grid-cols-[1.2fr_.8fr_.7fr_.7fr_.7fr] bg-slate-50 px-5 py-3 text-xs font-black uppercase tracking-wide text-slate-500 lg:grid">
+          <div className="hidden grid-cols-[1.2fr_.8fr_.7fr_.7fr_.8fr] bg-slate-50 px-5 py-3 text-xs font-black uppercase tracking-wide text-slate-500 lg:grid">
             <span>Compromiso</span>
             <span>Entidad</span>
             <span>Localidad</span>
             <span>Estado</span>
-            <span>Soporte</span>
+            <span>Acciones</span>
           </div>
 
           <div className="divide-y divide-slate-200">
             {filtrados.map((item) => (
-              <article key={item.id} className="grid gap-4 px-5 py-5 lg:grid-cols-[1.2fr_.8fr_.7fr_.7fr_.7fr] lg:items-center">
+              <article key={item.id} className="grid gap-4 px-5 py-5 lg:grid-cols-[1.2fr_.8fr_.7fr_.7fr_.8fr] lg:items-center">
                 <div>
                   <p className="font-black text-slate-950">{item.titulo}</p>
                   <p className="mt-1 text-sm leading-6 text-slate-600">{item.resumen}</p>
-                  <p className="mt-2 text-xs font-bold text-slate-500">{item.id} · Límite: {item.fechaLimite}</p>
+                  <p className="mt-2 text-xs font-bold text-slate-500">{item.id} · Límite: {item.fechaLimite} · Prioridad: {item.prioridad}</p>
                 </div>
                 <p className="text-sm font-bold text-slate-700">{item.entidad}</p>
                 <p className="text-sm text-slate-600">{item.localidad}</p>
                 <SemaforoEstado estado={item.estado} />
                 <div className="flex flex-wrap gap-2">
-                  <a href={item.soporte || "#"} className="inline-flex items-center rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-slate-700 hover:bg-slate-50">
-                    Ver soporte <ExternalLink className="ml-1 h-3 w-3" />
-                  </a>
+                  {hasRealUrl(item.soporte) ? (
+                    <a href={item.soporte} className="inline-flex items-center rounded-xl border border-slate-200 px-3 py-2 text-xs font-black text-slate-700 hover:bg-slate-50">
+                      Ver soporte <ExternalLink className="ml-1 h-3 w-3" />
+                    </a>
+                  ) : (
+                    <a href="/participa#actualizacion" className="inline-flex items-center rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-black text-slate-500">
+                      Soporte pendiente
+                    </a>
+                  )}
                   <a href="/participa#seguimiento" className="inline-flex items-center rounded-xl bg-[#FBD416] px-3 py-2 text-xs font-black text-slate-950">
                     Solicitar seguimiento
                   </a>
