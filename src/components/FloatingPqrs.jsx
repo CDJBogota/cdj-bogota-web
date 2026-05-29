@@ -7,9 +7,9 @@ export default function FloatingPqrs() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-5 right-5 z-[60]">
+    <div className="fixed bottom-4 right-4 z-[60] sm:bottom-5 sm:right-5">
       {open && (
-        <div className="mb-3 w-[340px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+        <div className="mb-3 max-h-[75vh] w-[calc(100vw-2rem)] max-w-[360px] overflow-y-auto rounded-3xl border border-slate-200 bg-white shadow-2xl">
           <div className="bg-slate-950 p-5 text-white">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -63,10 +63,10 @@ export default function FloatingPqrs() {
 
             <div className="rounded-2xl bg-slate-50 p-3 text-xs leading-5 text-slate-600">
               Correo CDJ:<br />
-              <b>{correoInstitucional}</b>
+              <b className="break-words">{correoInstitucional}</b>
               <br /><br />
               Equipo de Juventud SDG:<br />
-              <b>{correoEquipoJuventud}</b>
+              <b className="break-words">{correoEquipoJuventud}</b>
             </div>
           </div>
         </div>
@@ -75,10 +75,11 @@ export default function FloatingPqrs() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="flex items-center gap-2 rounded-full bg-[#3871B7] px-5 py-4 font-black text-white shadow-2xl transition hover:scale-[1.02]"
+        className="flex items-center gap-2 rounded-full bg-[#3871B7] px-4 py-3 text-sm font-black text-white shadow-2xl transition hover:scale-[1.02] sm:px-5 sm:py-4 sm:text-base"
       >
         {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
-        {open ? "Cerrar" : "Participa / PQRSD"}
+        <span className="hidden sm:inline">{open ? "Cerrar" : "Participa / PQRSD"}</span>
+        <span className="sm:hidden">{open ? "Cerrar" : "PQRSD"}</span>
       </button>
     </div>
   );

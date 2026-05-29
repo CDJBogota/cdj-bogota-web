@@ -7,3 +7,33 @@ html {
 body {
   margin: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+a {
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    word-break: break-word;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+}
