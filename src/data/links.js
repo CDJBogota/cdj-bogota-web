@@ -2,6 +2,13 @@ export const correoInstitucional = "ConsejoDistritaldeJuventud@gobiernobogota.go
 
 export const correoEquipoJuventud = "juventud@gobiernobogota.gov.co";
 
+export const oneDriveLinks = {
+  archivoGeneral:
+    "https://gobiernobogota-my.sharepoint.com/:f:/g/personal/consejodistritaldejuventud_gobiernobogota_gov_co/IgDz-WzQSo9rQqoskx3PCOxcAYHDKiD-eQGyjqnMRaeqbqM",
+  reglamentoInterno:
+    "https://gobiernobogota-my.sharepoint.com/:b:/g/personal/consejodistritaldejuventud_gobiernobogota_gov_co/IQBGrf8irEXJR6MYWhruCSo-AaxPToG0DhFspt2JyrtzJmI?e=07gIWH",
+};
+
 export const socialLinks = [
   {
     name: "Instagram",
@@ -36,12 +43,13 @@ export const socialLinks = [
 ];
 
 export const externalNormativaLinks = {
-  constitucion: "https://www.constitucioncolombia.com/",
   ley1622: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=52971",
   ley1885: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=85540",
   ley1755: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=65334",
   ley1712: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=56882",
   ley1581: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981",
+  sentenciaC4842017: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=84681",
+  directiva08_2021: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=174866",
 };
 
 export const cljEmails = {

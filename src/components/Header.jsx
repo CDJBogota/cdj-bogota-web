@@ -3,14 +3,12 @@ import { Button } from "./ui.jsx";
 import LogoCDJ from "./LogoCDJ.jsx";
 
 const navItems = [
-  ["#inicio", "Inicio"],
-  ["#consejo", "Consejo"],
-  ["#marco-juridico", "Marco jurídico"],
-  ["#sistema", "Sistema"],
-  ["#incidencia", "Incidencia"],
-  ["#biblioteca", "Biblioteca"],
-  ["#territorio", "Localidades"],
-  ["#contacto", "Contacto"],
+  ["/", "Inicio"],
+  ["/institucional", "Institucional"],
+  ["/normativa", "Normativa"],
+  ["/transparencia", "Transparencia"],
+  ["/localidades", "Localidades"],
+  ["/participa", "Participa"],
 ];
 
 export default function Header() {
@@ -25,8 +23,8 @@ export default function Header() {
             </a>
           ))}
         </div>
-        <a href="#contacto">
-          <Button>Participa</Button>
+        <a href="/participa">
+          <Button>Participa / PQRSD</Button>
         </a>
       </nav>
     </header>
