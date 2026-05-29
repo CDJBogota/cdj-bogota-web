@@ -1,3 +1,6 @@
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import SocialLinks from "../components/SocialLinks.jsx";
 import { Card, CardContent, SectionLabel, Button, brand } from "../components/ui.jsx";
 import { mailtoLinks, correoInstitucional, correoEquipoJuventud } from "../data/links.js";
@@ -13,6 +16,7 @@ const acciones = [
 export default function ParticipaPage() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]">
+      <Header />
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-5">
@@ -35,7 +39,9 @@ export default function ParticipaPage() {
                 <Icon className="mb-5 h-9 w-9" style={{ color: brand.blue }} />
                 <h2 className="text-2xl font-black">{title}</h2>
                 <p className="mt-4 leading-7 text-slate-600">{text}</p>
-                <Button className="mt-6" href={href}>Abrir formato por correo</Button>
+                <a href={href}>
+                  <Button className="mt-6">Abrir formato por correo</Button>
+                </a>
               </CardContent>
             </Card>
           ))}
@@ -59,6 +65,9 @@ export default function ParticipaPage() {
           </div>
         </div>
       </section>
+
+      <FloatingPqrs />
+      <Footer />
     </main>
   );
 }

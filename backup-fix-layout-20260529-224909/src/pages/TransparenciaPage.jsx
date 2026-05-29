@@ -1,3 +1,6 @@
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import { Card, CardContent, SectionLabel, StatusPill, brand } from "../components/ui.jsx";
 import { oneDriveLinks, mailtoLinks } from "../data/links.js";
 import { Archive, FileText, ClipboardList, ExternalLink, ShieldCheck } from "lucide-react";
@@ -14,6 +17,7 @@ const bloques = [
 export default function TransparenciaPage() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]">
+      <Header />
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-5">
@@ -70,6 +74,9 @@ export default function TransparenciaPage() {
           </div>
         </div>
       </section>
+
+      <FloatingPqrs />
+      <Footer />
     </main>
   );
 }

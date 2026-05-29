@@ -33,25 +33,33 @@ export default function FloatingPqrs() {
           </div>
 
           <div className="grid gap-3 p-4">
-            <Button className="w-full justify-start" href={mailtoLinks.propuesta}>
+            <a href={mailtoLinks.propuesta}>
+              <Button className="w-full justify-start">
                 <Send className="mr-2 h-4 w-4" />
                 Enviar propuesta
               </Button>
+            </a>
 
-            <Button variant="outline" className="w-full justify-start" style={{ borderColor: "#3871B7", color: "#3871B7" }} href={mailtoLinks.pqrs}>
+            <a href={mailtoLinks.pqrs}>
+              <Button variant="outline" className="w-full justify-start" style={{ borderColor: "#3871B7", color: "#3871B7" }}>
                 <Mail className="mr-2 h-4 w-4" />
                 Registrar PQRSD juvenil
               </Button>
+            </a>
 
-            <Button variant="outline" className="w-full justify-start" style={{ borderColor: "#2B2B2B", color: "#2B2B2B" }} href={mailtoLinks.documentos}>
+            <a href={mailtoLinks.documentos}>
+              <Button variant="outline" className="w-full justify-start" style={{ borderColor: "#2B2B2B", color: "#2B2B2B" }}>
                 <FileText className="mr-2 h-4 w-4" />
                 Solicitar documentos
               </Button>
+            </a>
 
-            <Button variant="outline" className="w-full justify-start" style={{ borderColor: "#EE4C5B", color: "#EE4C5B" }} href={mailtoLinks.equipoJuventud}>
+            <a href={mailtoLinks.equipoJuventud}>
+              <Button variant="outline" className="w-full justify-start" style={{ borderColor: "#EE4C5B", color: "#EE4C5B" }}>
                 <Users className="mr-2 h-4 w-4" />
                 Equipo de Juventud SDG
               </Button>
+            </a>
 
             <div className="rounded-2xl bg-slate-50 p-3 text-xs leading-5 text-slate-600">
               Correo CDJ:<br />

@@ -1,3 +1,6 @@
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import { brand, Card, CardContent, SectionLabel, StatusPill, Button } from "../components/ui.jsx";
 import { Eye, Radio, PenLine, Send, ClipboardList, FileText } from "lucide-react";
 import { mailtoLinks } from "../data/links.js";
@@ -32,6 +35,7 @@ const comisiones = [
 export default function ComisionesPage() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]">
+      <Header />
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-5">
@@ -65,9 +69,11 @@ export default function ComisionesPage() {
                   ))}
                 </div>
 
-                <Button className="mt-6" href={mailtoLinks.propuesta}>
+                <a href={mailtoLinks.propuesta}>
+                  <Button className="mt-6">
                     Contactar comisión <Send className="ml-2 h-4 w-4" />
                   </Button>
+                </a>
               </CardContent>
             </Card>
           ))}
@@ -97,6 +103,9 @@ export default function ComisionesPage() {
           </div>
         </div>
       </section>
+
+      <FloatingPqrs />
+      <Footer />
     </main>
   );
 }

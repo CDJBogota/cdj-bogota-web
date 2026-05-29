@@ -1,3 +1,6 @@
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import { brand, Card, CardContent, SectionLabel, StatusPill, Button } from "../components/ui.jsx";
 import { nivelesSistemaJuventud, mapaSistemaJuventud } from "../data/sistemaJuventud.js";
 import { ArrowRight, GitBranch, Landmark, Network, Users, ExternalLink } from "lucide-react";
@@ -7,6 +10,7 @@ const iconos = [Landmark, Network, Users, GitBranch];
 export default function SistemaJuventudPage() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]">
+      <Header />
 
       <section className="relative overflow-hidden bg-slate-50 py-20">
         <img
@@ -60,9 +64,11 @@ export default function SistemaJuventudPage() {
                     ))}
                   </div>
 
-                  <Button variant="outline" className="mt-6" style={{ borderColor: brand.blue, color: brand.blue }} href={item.href} target="_blank" rel="noreferrer">
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    <Button variant="outline" className="mt-6" style={{ borderColor: brand.blue, color: brand.blue }}>
                       Ver norma base <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
+                  </a>
                 </CardContent>
               </Card>
             );
@@ -104,6 +110,9 @@ export default function SistemaJuventudPage() {
           </div>
         </div>
       </section>
+
+      <FloatingPqrs />
+      <Footer />
     </main>
   );
 }

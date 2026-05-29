@@ -1,3 +1,6 @@
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import { brand, Card, CardContent, SectionLabel, StatusPill, Button } from "../components/ui.jsx";
 import { Handshake, Eye, Radio, PenLine, ArrowRight, Users, Landmark, GitBranch } from "lucide-react";
 import { oneDriveLinks, externalNormativaLinks } from "../data/links.js";
@@ -53,6 +56,7 @@ const normasSistema = [
 export default function InstitucionalPage() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]">
+      <Header />
 
       <section className="relative overflow-hidden bg-slate-50 py-20">
         <img src="/brand/isotipo-cdj.png" alt="" aria-hidden="true" className="pointer-events-none absolute right-[-80px] top-10 hidden w-[420px] opacity-10 lg:block" />
@@ -67,13 +71,19 @@ export default function InstitucionalPage() {
             comunicar, representar y hacer seguimiento público.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href={oneDriveLinks.reglamentoInterno} target="_blank" rel="noreferrer">Ver Reglamento Interno <ArrowRight className="ml-2 h-4 w-4" /></Button>
-            <Button variant="outline" style={{ borderColor: brand.black, color: brand.black }} href={oneDriveLinks.archivoGeneral} target="_blank" rel="noreferrer">
+            <a href={oneDriveLinks.reglamentoInterno} target="_blank" rel="noreferrer">
+              <Button>Ver Reglamento Interno <ArrowRight className="ml-2 h-4 w-4" /></Button>
+            </a>
+            <a href={oneDriveLinks.archivoGeneral} target="_blank" rel="noreferrer">
+              <Button variant="outline" style={{ borderColor: brand.black, color: brand.black }}>
                 Archivo oficial OneDrive
               </Button>
-            <Button variant="outline" style={{ borderColor: brand.blue, color: brand.blue }} href="/sistema-juventud">
+            </a>
+            <a href="/sistema-juventud">
+              <Button variant="outline" style={{ borderColor: brand.blue, color: brand.blue }}>
                 Ver Sistema de Juventud
               </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -213,6 +223,9 @@ export default function InstitucionalPage() {
           ))}
         </div>
       </section>
+
+      <FloatingPqrs />
+      <Footer />
     </main>
   );
 }

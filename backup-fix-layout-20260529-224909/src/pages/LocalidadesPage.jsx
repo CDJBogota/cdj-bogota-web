@@ -1,3 +1,6 @@
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import { Card, CardContent, SectionLabel, StatusPill, brand } from "../components/ui.jsx";
 import { cljEmails, localidadMailto } from "../data/links.js";
 import { Mail, MapPinned } from "lucide-react";
@@ -7,6 +10,7 @@ const localidades = Object.keys(cljEmails);
 export default function LocalidadesPage() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]">
+      <Header />
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-5">
@@ -43,6 +47,9 @@ export default function LocalidadesPage() {
           ))}
         </div>
       </section>
+
+      <FloatingPqrs />
+      <Footer />
     </main>
   );
 }

@@ -1,3 +1,4 @@
+
 export const brand = {
   yellow: "#FBD416",
   coral: "#EE4C5B",
@@ -11,45 +12,17 @@ export const brand = {
   white: "#FFFFFF",
 };
 
-export function Button({
-  children,
-  variant = "solid",
-  className = "",
-  style = {},
-  href,
-  target,
-  rel,
-  type = "button",
-  ...props
-}) {
+export function Button({ children, variant = "solid", className = "", style = {}, ...props }) {
   const base =
     "inline-flex min-h-11 items-center justify-center rounded-2xl px-4 py-3 text-sm font-black transition active:scale-[0.98] sm:px-5 sm:text-base";
-
   const variants = {
     solid: "bg-[#3871B7] text-white shadow-lg shadow-blue-900/10 hover:brightness-105",
     outline: "border bg-white hover:bg-slate-50",
     ghost: "hover:bg-slate-100",
   };
 
-  const classes = `${base} ${variants[variant]} ${className}`;
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        target={target}
-        rel={rel || (target === "_blank" ? "noreferrer" : undefined)}
-        className={classes}
-        style={style}
-        {...props}
-      >
-        {children}
-      </a>
-    );
-  }
-
   return (
-    <button type={type} className={classes} style={style} {...props}>
+    <button className={`${base} ${variants[variant]} ${className}`} style={style} {...props}>
       {children}
     </button>
   );

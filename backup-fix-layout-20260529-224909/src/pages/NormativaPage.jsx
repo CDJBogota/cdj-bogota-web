@@ -1,3 +1,6 @@
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import FloatingPqrs from "../components/FloatingPqrs.jsx";
 import { Card, CardContent, SectionLabel, StatusPill, Button, brand } from "../components/ui.jsx";
 import { externalNormativaLinks, oneDriveLinks } from "../data/links.js";
 import { ExternalLink, Scale, ScrollText, ShieldCheck, Landmark } from "lucide-react";
@@ -20,6 +23,7 @@ const normas = [
 export default function NormativaPage() {
   return (
     <main className="min-h-screen bg-white text-[#2B2B2B]">
+      <Header />
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-5">
@@ -33,10 +37,14 @@ export default function NormativaPage() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href={oneDriveLinks.reglamentoInterno} target="_blank" rel="noreferrer">Reglamento Interno CDJ</Button>
-            <Button variant="outline" style={{ borderColor: brand.black, color: brand.black }} href={oneDriveLinks.archivoGeneral} target="_blank" rel="noreferrer">
+            <a href={oneDriveLinks.reglamentoInterno} target="_blank" rel="noreferrer">
+              <Button>Reglamento Interno CDJ</Button>
+            </a>
+            <a href={oneDriveLinks.archivoGeneral} target="_blank" rel="noreferrer">
+              <Button variant="outline" style={{ borderColor: brand.black, color: brand.black }}>
                 Archivo documental OneDrive
               </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -86,6 +94,9 @@ export default function NormativaPage() {
           </div>
         </div>
       </section>
+
+      <FloatingPqrs />
+      <Footer />
     </main>
   );
 }
