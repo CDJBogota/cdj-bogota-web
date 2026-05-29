@@ -1,29 +1,43 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-import HomePage from "./pages/HomePage.jsx";
-import InstitucionalPage from "./pages/InstitucionalPage.jsx";
-import NormativaPage from "./pages/NormativaPage.jsx";
-import TransparenciaPage from "./pages/TransparenciaPage.jsx";
-import ParticipaPage from "./pages/ParticipaPage.jsx";
-import LocalidadesPage from "./pages/LocalidadesPage.jsx";
-import SistemaJuventudPage from "./pages/SistemaJuventudPage.jsx";
-import ComisionesPage from "./pages/ComisionesPage.jsx";
-import DocumentosPage from "./pages/DocumentosPage.jsx";
+import HomePage from "./pages/HomePage";
+import InstitucionalPage from "./pages/InstitucionalPage";
+import NormativaPage from "./pages/NormativaPage";
+import TransparenciaPage from "./pages/TransparenciaPage";
+import DocumentosPage from "./pages/DocumentosPage";
+import ParticipaPage from "./pages/ParticipaPage";
+import LocalidadesPage from "./pages/LocalidadesPage";
+import SistemaJuventudPage from "./pages/SistemaJuventudPage";
+import ComisionesPage from "./pages/ComisionesPage";
+import IntegrantesPage from "./pages/IntegrantesPage";
+import CumplimientoPage from "./pages/CumplimientoPage";
+import MapaTerritorialPage from "./pages/MapaTerritorialPage";
+import TimelinePage from "./pages/TimelinePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/institucional" element={<InstitucionalPage />} />
         <Route path="/normativa" element={<NormativaPage />} />
         <Route path="/transparencia" element={<TransparenciaPage />} />
-        <Route path="/sistema-juventud" element={<SistemaJuventudPage />} />
-        <Route path="/comisiones" element={<ComisionesPage />} />
         <Route path="/documentos" element={<DocumentosPage />} />
         <Route path="/participa" element={<ParticipaPage />} />
         <Route path="/localidades" element={<LocalidadesPage />} />
+        <Route path="/sistema-juventud" element={<SistemaJuventudPage />} />
+        <Route path="/comisiones" element={<ComisionesPage />} />
+        <Route path="/integrantes" element={<IntegrantesPage />} />
+        <Route path="/cumplimiento" element={<CumplimientoPage />} />
+        <Route path="/mapa-territorial" element={<MapaTerritorialPage />} />
+        <Route path="/historia" element={<TimelinePage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

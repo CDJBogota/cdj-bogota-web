@@ -1,90 +1,52 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { Button } from "./ui.jsx";
-import LogoCDJ from "./LogoCDJ.jsx";
+import { Link, NavLink } from "react-router-dom";
+import LogoCDJ from "./LogoCDJ";
+import { mainNav, participaMenu, transparenciaMenu } from "../data/navigation";
 
-const navItems = [
-  ["/", "Inicio"],
-  ["/institucional", "Institucional"],
-  ["/sistema-juventud", "Sistema"],
-  ["/normativa", "Normativa"],
-  ["/transparencia", "Transparencia"],
-  ["/documentos", "Documentos"],
-  ["/comisiones", "Comisiones"],
-  ["/localidades", "Localidades"],
-];
+function navClass({ isActive }) {
+  return `text-sm font-black transition hover:text-[#3871B7] ${isActive ? "text-[#3871B7]" : "text-slate-700"}`;
+}
+
+function Dropdown({ label, items }) {
+  return (
+    <div className="group relative">
+      <button className="text-sm font-black text-slate-700 transition hover:text-[#3871B7]">
+        {label}
+      </button>
+      <div className="invisible absolute left-0 top-full z-50 min-w-72 translate-y-2 rounded-3xl border border-slate-200 bg-white p-3 opacity-0 shadow-xl transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+        {items.map((item) => (
+          <Link key={item.href} to={item.href} className="block rounded-2xl px-4 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50 hover:text-[#3871B7]">
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
-
-  function closeMenu() {
-    setOpen(false);
-  }
+  const visibleNav = mainNav.filter((item) => !["Transparencia", "Participa"].includes(item.label));
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-5">
-        <Link to="/" onClick={closeMenu} className="shrink-0">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+        <Link to="/" aria-label="Ir al inicio">
           <LogoCDJ />
         </Link>
 
-        <div className="hidden items-center gap-4 text-sm font-bold text-slate-700 xl:flex">
-          {navItems.map(([href, label]) => (
-            <Link key={href} to={href} className="whitespace-nowrap hover:text-[#3871B7]">
-              {label}
-            </Link>
+        <div className="hidden items-center gap-6 lg:flex">
+          {visibleNav.map((item) => (
+            <NavLink key={item.href} to={item.href} className={navClass}>
+              {item.label}
+            </NavLink>
           ))}
+          <Dropdown label="Transparencia" items={transparenciaMenu} />
+          <Dropdown label="Participa" items={participaMenu} />
         </div>
 
-        <div className="hidden xl:block">
-          <Link to="/participa">
-            <Button>Participa / PQRSD</Button>
-          </Link>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-800 shadow-sm xl:hidden"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          Menú
-        </button>
+        <Link to="/participa" className="rounded-2xl bg-[#3871B7] px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#2f609d]">
+          Radicar / Participar
+        </Link>
       </nav>
-
-      {open && (
-        <div className="border-t border-slate-200 bg-white shadow-xl xl:hidden">
-          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-5">
-            <div className="mb-3 flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-slate-500">
-              Navegación
-              <ChevronDown className="h-4 w-4" />
-            </div>
-
-            <div className="grid gap-2 sm:grid-cols-2">
-              {navItems.map(([href, label]) => (
-                <Link
-                  key={href}
-                  to={href}
-                  onClick={closeMenu}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 font-bold text-slate-800 transition hover:bg-white hover:text-[#3871B7] hover:shadow-sm"
-                >
-                  {label}
-                </Link>
-              ))}
-
-              <Link
-                to="/participa"
-                onClick={closeMenu}
-                className="rounded-2xl bg-[#3871B7] px-4 py-3 font-black text-white transition hover:brightness-105 sm:col-span-2"
-              >
-                Participa / PQRSD
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

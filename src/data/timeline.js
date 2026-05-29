@@ -1,0 +1,38 @@
+export const timeline = [
+  {
+    id: "TL-2025-001",
+    fecha: "2025-01-15",
+    titulo: "Reforma del Reglamento Interno",
+    categoria: "Normativa interna",
+    descripcion: "Adopción del Acuerdo 002 de 2025 para actualizar reglas de funcionamiento, archivo, comisiones, publicidad y régimen interno.",
+    soporte: "#",
+    destacado: true,
+  },
+  {
+    id: "TL-2025-002",
+    fecha: "2025-02-01",
+    titulo: "Instalación de comisiones permanentes",
+    categoria: "Organización interna",
+    descripcion: "Organización del trabajo en Control y Veeduría, Comunicación y Asuntos Públicos, y Planeación y Formulación.",
+    soporte: "#",
+    destacado: true,
+  },
+  {
+    id: "TL-2025-003",
+    fecha: "2025-03-10",
+    titulo: "Sesión ordinaria de seguimiento",
+    categoria: "Sesiones",
+    descripcion: "Sesión de Plenaria con revisión de compromisos, solicitudes y agenda pública.",
+    soporte: "#",
+    destacado: false,
+  },
+  {
+    id: "TL-2025-004",
+    fecha: "2025-06-30",
+    titulo: "Informe semestral de gestión",
+    categoria: "Rendición de cuentas",
+    descripcion: "Presentación pública de avances, pendientes y compromisos del CDJ.",
+    soporte: "#",
+    destacado: true,
+  },
+];
