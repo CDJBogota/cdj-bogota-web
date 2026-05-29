@@ -15,6 +15,7 @@ import {
   Archive,
   MapPinned,
   MessageCircle,
+  Users,
 } from "lucide-react";
 
 const indicadores = [

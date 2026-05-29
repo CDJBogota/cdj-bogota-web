@@ -1,7 +1,7 @@
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import FloatingPqrs from "../components/FloatingPqrs.jsx";
-import { brand, Card, CardContent, SectionLabel, StatusPill, Button } from "../components/ui.jsx";
+import { brand, Card, CardContent, SectionLabel, StatusPill } from "../components/ui.jsx";
 import { oneDriveLinks, mailtoLinks } from "../data/links.js";
 import { Archive, ExternalLink, FileText, FolderOpen, ShieldCheck } from "lucide-react";
 
