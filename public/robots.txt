@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cdj-bogota-web.vercel.app/sitemap.xml
