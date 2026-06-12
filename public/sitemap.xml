@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/institucional</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/integrantes</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/localidades</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/mapa-territorial</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/transparencia</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/documentos</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/cumplimiento</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/historia</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/participa</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/comisiones</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/sistema-juventud</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://cdj-bogota-web.vercel.app/normativa</loc>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
